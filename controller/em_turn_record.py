@@ -16,6 +16,7 @@ import time
 from typing import Optional
 
 import em_db as db
+import em_logfmt
 import em_recordings
 
 log = logging.getLogger("echomuse.esphome")
@@ -63,6 +64,10 @@ class TurnTrace:
     # from device.last_wake at turn start — None for button/continuation
     # turns. Persisted with the turn for threshold tuning and model A/Bs.
     wake_info:        Optional[dict] = None
+    # The device taking this turn, named in the [TURN] line's suffix
+    # (em_logfmt.turn_suffix). "" on a trace built without one — the line
+    # then renders exactly as it did before the field existed.
+    device_id:        str   = ""
 
     def elapsed_ms(self) -> int:
         return int((time.monotonic() - self.t0) * 1000)
@@ -103,6 +108,7 @@ class TurnTrace:
             f"playback={fmt(self.t_playback_ms)} "
             f"| segments: ha_think={fmt(self.ha_think_ms)} "
             f"tts_gen={fmt(self.tts_gen_ms)} fetch={fmt(self.fetch_ms)}"
+            f"{em_logfmt.turn_suffix(self.device_id, self.wake_info)}"
         )
 
 

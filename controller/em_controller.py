@@ -104,6 +104,7 @@ import em_ble_proxy
 import em_player
 import em_volume
 import em_loglevel
+import em_logfmt
 import em_leds
 import em_playback
 import em_alarm
@@ -161,6 +162,12 @@ if _overrides.levels:
     log.info("Log levels: " + ", ".join(
         f"{name}={logging.getLevelName(level)}"
         for name, level in _overrides.levels.items()))
+
+# Stamp every line with milliseconds and a timezone offset, and state the
+# levels and timezone in force once — see em_logfmt for why a plain tail
+# had neither. After install_log_ring, so the ring is stamped the same way.
+em_logfmt.install(_LOG_FORMAT)
+log.info(em_logfmt.startup_summary())
 
 
 # ─── Config ───────────────────────────────────────────────────────────────────

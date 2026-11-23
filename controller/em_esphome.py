@@ -2662,7 +2662,8 @@ async def trigger_voice_turn(
         return False
 
     trace = em_turn_record.TurnTrace(
-        trigger=trigger_label, t0=time.monotonic(), wake_info=wake_info
+        trigger=trigger_label, t0=time.monotonic(), wake_info=wake_info,
+        device_id=device.device_id
     )
 
     # Only a wake-word turn names a wake word. A button turn genuinely has

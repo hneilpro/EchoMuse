@@ -1,7 +1,7 @@
 {
  "files": {
   "em_db.py": 3535,
-  "em_esphome.py": 3169
+  "em_esphome.py": 3170
  },
  "functions": {
   "em_barge_watcher.barge_watcher": 293,
