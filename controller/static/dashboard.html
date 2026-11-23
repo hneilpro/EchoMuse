@@ -463,6 +463,19 @@
       outline: 2px solid var(--accent-hi); outline-offset: 2px;
     }
 
+    /* Device Detail goes near-full-viewport on desktop (fork addition,
+       hneilpro/EchoMuse dashboard-full-width). The shared 900×700 modal
+       frame left the Activity tab's turn bars and the Status panels
+       squeezed into ~60% of a wide screen with dead backdrop either side.
+       Scoped to .em-modal--device only: Settings and the wizard keep the
+       shared frame, the ≤640px rule below still takes every modal
+       full-screen on phones, and the body's own sections are all
+       block/flex/grid at 100% width, so widening the frame is the whole
+       change — nothing inside needed a second constraint removed. */
+    @media (min-width: 641px) {
+      .em-modal--device { width: min(1500px, 96vw) !important; height: min(900px, 92vh) !important; }
+    }
+
     /* Mobile layout — the dashboard is inline-styled, so phone-width
        adjustments live here as class-targeted media overrides (the classes
        are on the structural containers in dashboard.jsx). !important is
