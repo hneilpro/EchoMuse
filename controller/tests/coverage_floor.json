@@ -48,6 +48,7 @@
  "em_link_gate.py": 30.0,
  "em_linkauth.py": 99.0,
  "em_listen.py": 95.0,
+ "em_logfmt.py": 99.0,
  "em_loglevel.py": 97.0,
  "em_mbc.py": 99.0,
  "em_ns.py": 58.0,
